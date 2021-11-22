@@ -25,7 +25,7 @@ class Circles extends Layer {
     strokeWeight(1);
     push();
     //
-    translate(width / 2, height / 2);
+    //translate(width / 2, height / 2);
     for (let i = 0; i <= this.numShapes; i++) {
       ellipse(0, -this.position, this.shapeSize, this.shapeSize);
       rotate(this.angle);
@@ -49,7 +49,7 @@ class SimpleLines extends Layer {
 
     push();
     //
-    translate(width / 2, height / 2);
+    //translate(width / 2, height / 2);
     strokeWeight(this.weight);
     stroke(PALETTE[0]);
     // ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE);
@@ -83,7 +83,7 @@ class OutlineShape extends Layer {
     noFill();
     push();
     //
-    translate(width / 2, height / 2);
+    //translate(width / 2, height / 2);
     if (this.polygonTrue) {
       polygon(0, 0, CRYSTAL_SIZE / 2, this.sides);
     } else {
@@ -107,14 +107,13 @@ class DottedLines extends Layer {
     noStroke();
     push();
     //
-    translate(width / 2, height / 2);
+    //translate(width / 2, height / 2);
     for (let i = 0; i <= this.numShapes; i++) {
       for (
         let x = this.centerOffset;
         x < CRYSTAL_SIZE / 2;
         x += this.singleStep
       ) {
-        console.log(this.shapeSides);
         rect(x, 0, this.shapeSides, this.shapeSides);
       }
 
@@ -129,14 +128,13 @@ class CenteredShape extends Layer {
   constructor() {
     super();
     this.shapeSize =
-      floor(random(this.stepsOut / 2, this.stepsOut)) * this.singleStep;
+      floor(random(this.stepsOut / 2, this.stepsOut - 2)) * this.singleStep;
   }
   render() {
     fill(this.layerColor);
     noStroke();
     push();
-    //
-    translate(width / 2, height / 2);
+    //translate(width / 2, height / 2);
     if (this.polygonTrue) {
       rotate(this.angle / 2);
       polygon(0, 0, this.shapeSize, this.sides);
@@ -172,8 +170,7 @@ class RingOfShapes extends Layer {
     fill(this.fillColor);
     strokeWeight(this.weight);
     push();
-    //
-    translate(width / 2, height / 2);
+    //translate(width / 2, height / 2);
     for (let i = 0; i < this.numShapes; i++) {
       if (this.randomShape < 0.33) {
         ellipse(0, this.center, this.radius, this.radius);
@@ -203,7 +200,7 @@ class SteppedPolygons extends Layer {
     strokeWeight(this.weight);
     push();
     //
-    translate(width / 2, height / 2);
+    //translate(width / 2, height / 2);
     rotate(this.angle / 2);
     for (let i = 1; i < this.numSteps + 1; i++) {
       polygon(0, 0, this.centerOffset + i * this.singleStep, this.sides);

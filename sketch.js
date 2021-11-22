@@ -1,13 +1,25 @@
-const CRYSTAL_SIZE = 500;
+const CRYSTAL_SIZE = 150;
 // const SIDES = 4;
+
+//layout
+const MARGIN = CRYSTAL_SIZE / 2;
+const COLUMNS = 3;
+const ROWS = 4;
+const PADDING = CRYSTAL_SIZE * 0.2;
+const GRIDBOX = CRYSTAL_SIZE + PADDING;
+const START = CRYSTAL_SIZE / 2 + MARGIN;
+//
 let PALETTE = [];
+ALL_CRYSTALS = [];
+
 let SIDES;
 let SHAPE;
 
-const layers = [];
-
 function setup() {
-  var myCanvas = createCanvas(550, 550, SVG);
+  const totalX = START + GRIDBOX * COLUMNS;
+  const totalY = START + GRIDBOX * ROWS;
+
+  var myCanvas = createCanvas(totalX, totalY, SVG);
   myCanvas.parent("p5-sketch");
 
   let svg = document.getElementsByTagName("svg");
@@ -38,38 +50,29 @@ function setup() {
 }
 
 function draw() {
-  const dottedLines = new DottedLines();
-  dottedLines.render();
+  //go to a point on the screen and draw a pixel
+  //continue to do this until we run out of room
 
-  const centeredShape = new CenteredShape();
-  centeredShape.render();
+  for (let x = 0; x < COLUMNS; x++) {
+    for (let y = 0; y < ROWS; y++) {
+      const posX = START + x * GRIDBOX;
+      const posY = START + y * GRIDBOX;
+      //save the created crystals into an array
+      ALL_CRYSTALS.push(new Crystal(posX, posY));
+    }
+  }
 
-  const ringOfShapes = new RingOfShapes();
-  ringOfShapes.render();
-
-  const steppedPolygons = new SteppedPolygons();
-  steppedPolygons.render();
-
-  // let picker = random(1);
-  // if (picker > 0.3) {
-  //   layers.push(new OutlineShape());
-  // }
-
-  // picker = random(1);
-  // if (picker > 0.3) {
-  //   layers.push(new SimpleLines());
-  // }
-
-  // picker = random(1);
-  // if (picker > 0.3) {
-  //   layers.push(new Circles());
-  // }
-
-  // layers.forEach((layer) => {
-  //   layer.render();
-  // });
-
+  ALL_CRYSTALS.forEach((crystal) => {
+    crystal.render();
+  });
   // new Vivus("svg-figure", {
   //   duration: 50,
   // });
+  //
 }
+// console.log(window.innerWidth + " , " + window.innerHeight);
+// window.addEventListener("resize", eventFn);
+
+// function eventFn() {
+//   console.log(window.innerWidth + " , " + window.innerHeight);
+// }

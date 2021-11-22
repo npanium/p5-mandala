@@ -67,3 +67,41 @@ function saveSVG() {
   downloadLink.click();
   document.body.removeChild(downloadLink);
 }
+
+const layerConstructors = [
+  {
+    name: "Outline Shape",
+    init: () => new OutlineShape(),
+    weight: 0.3,
+  },
+  {
+    name: "Centered Shape",
+    init: () => new CenteredShape(),
+    weight: 0.3,
+  },
+  {
+    name: "Circles",
+    init: () => new Circles(),
+    weight: 0.3,
+  },
+  {
+    name: "Simple Lines",
+    init: () => new SimpleLines(),
+    weight: 0.3,
+  },
+  {
+    name: "Dotted Lines",
+    init: () => new DottedLines(),
+    weight: 0.3,
+  },
+  {
+    name: "Ring of Shapes",
+    init: () => new RingOfShapes(),
+    weight: 0.3,
+  },
+  {
+    name: "Stepped Polygons",
+    init: () => new SteppedPolygons(),
+    weight: 0.3,
+  },
+];
