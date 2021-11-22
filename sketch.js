@@ -4,6 +4,8 @@ let PALETTE = [];
 let SIDES;
 let SHAPE;
 
+const layers = [];
+
 function setup() {
   var myCanvas = createCanvas(550, 550, SVG);
   myCanvas.parent("p5-sketch");
@@ -36,32 +38,38 @@ function setup() {
 }
 
 function draw() {
-  const layer = new Circles();
-  layer.render();
+  const dottedLines = new DottedLines();
+  dottedLines.render();
 
-  const simpleLines = new SimpleLines();
-  simpleLines.render();
+  const centeredShape = new CenteredShape();
+  centeredShape.render();
 
-  const outlineShape = new OutlineShape();
-  outlineShape.render();
-  // SIDES = shapeSides(); //Set the number of sides of the polygon
+  const ringOfShapes = new RingOfShapes();
+  ringOfShapes.render();
+
+  const steppedPolygons = new SteppedPolygons();
+  steppedPolygons.render();
 
   // let picker = random(1);
   // if (picker > 0.3) {
-  //   outlineShape();
+  //   layers.push(new OutlineShape());
   // }
 
   // picker = random(1);
   // if (picker > 0.3) {
-  //   simpleLines();
+  //   layers.push(new SimpleLines());
   // }
 
   // picker = random(1);
   // if (picker > 0.3) {
-  //   circles();
+  //   layers.push(new Circles());
   // }
 
-  new Vivus("svg-figure", {
-    duration: 50,
-  });
+  // layers.forEach((layer) => {
+  //   layer.render();
+  // });
+
+  // new Vivus("svg-figure", {
+  //   duration: 50,
+  // });
 }
